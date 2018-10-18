@@ -356,6 +356,10 @@ public class Login extends javax.swing.JFrame {
                     this.setVisible(false);
                     if(isLibrarian){
                         new librarianPortal().setVisible(true);
+                    }else if(isStudent){
+                        new studentPortal().setVisible(true);
+                    }else{
+                        new clerkPortal().setVisible(true);
                     }
                 }
                 
