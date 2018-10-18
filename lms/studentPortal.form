@@ -32,7 +32,7 @@
         </Property>
         <Property name="inheritsPopupMenu" type="boolean" value="true"/>
         <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-          <Insets value="[0, 650, 0, 0]"/>
+          <Insets value="[0, 710, 0, 0]"/>
         </Property>
       </Properties>
       <SubComponents>
@@ -433,6 +433,7 @@
                     <Property name="text" type="java.lang.String" value="Update"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
                   </Events>
                 </Component>

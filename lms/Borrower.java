@@ -4,6 +4,23 @@ import java.util.*;
 
 public class Borrower extends User{
 
+    
+    String rollNo;
+    String dept;
+    String campus;
+
+    public String getRollNo() {
+        return rollNo;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public String getCampus() {
+        return campus;
+    }
+    
     public Borrower(String username, String password, String Name, String Gender, int Age) {
         super(username, password, Name, Gender, Age);
     }
@@ -28,5 +45,23 @@ public class Borrower extends User{
         profile[3] = String.valueOf(Age);
         return profile;
     }
+
+    public Borrower(String rollNo, String dept, String campus, String username, String password, String Name, String Gender, int Age) {
+        super(username, password, Name, Gender, Age);
+        this.rollNo = rollNo;
+        this.dept = dept;
+        this.campus = campus;
+    }
     
+    
+    public void update(String rollNo, String dept, String campus, String username, String password, String Name, String Gender, int Age){
+        this.username = username;
+        this.password = password;
+        this.Name = Name;
+        this.Gender = Gender;
+        this.Age = Age;
+        this.rollNo = rollNo;
+        this.dept = dept;
+        this.campus = campus;
+    }
 }

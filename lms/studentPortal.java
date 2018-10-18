@@ -23,6 +23,9 @@ public class studentPortal extends javax.swing.JFrame {
         jTextField4.setText(s.getUsername());
         jPasswordField1.setText(s.getPassword());
         jComboBox1.setSelectedItem(s.getGender());
+        jTextField3.setText(s.getRollNo());
+        jTextField5.setText(s.getDept());
+        jTextField6.setText(s.getCampus());
     }
 
     /**
@@ -168,6 +171,11 @@ public class studentPortal extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Raleway ExtraBold", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(62, 175, 237));
         jButton1.setText("Update");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -364,7 +372,7 @@ public class studentPortal extends javax.swing.JFrame {
         jMenuBar1.setFocusable(false);
         jMenuBar1.setFont(new java.awt.Font("Raleway Light", 0, 12)); // NOI18N
         jMenuBar1.setInheritsPopupMenu(true);
-        jMenuBar1.setMargin(new java.awt.Insets(0, 650, 0, 0));
+        jMenuBar1.setMargin(new java.awt.Insets(0, 710, 0, 0));
 
         jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jMenuBar1.add(jMenu1);
@@ -439,6 +447,16 @@ public class studentPortal extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String g = "Male";
+        if(jComboBox1.getSelectedIndex() == 1){
+            g = "Female";
+        }
+        //String rollNo, String dept, String campus, String username, String password, String Name, String Gender, int Age
+        s.update(jTextField3.getText(), jTextField5.getText(), jTextField6.getText(), jTextField4.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
