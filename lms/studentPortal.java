@@ -92,7 +92,7 @@ public class studentPortal extends javax.swing.JFrame {
         jTabbedPane3.setForeground(new java.awt.Color(51, 51, 51));
         jTabbedPane3.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane3.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        jTabbedPane3.setToolTipText("Select an option");
+        jTabbedPane3.setToolTipText("");
         jTabbedPane3.setAlignmentX(4.0F);
         jTabbedPane3.setAlignmentY(5.0F);
         jTabbedPane3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
