@@ -7,6 +7,9 @@ public class Borrower extends User{
     public Borrower(String username, String password, String Name, String Gender, int Age) {
         super(username, password, Name, Gender, Age);
     }
+	//Probably needs an array for storing all the borrowed books
+	
+	
     public ArrayList<Book> searchBook(String query){
         ArrayList<Book> result = new ArrayList<>();
         for(int k=0; k<LMS.bookCount; k++){
