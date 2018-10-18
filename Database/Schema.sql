@@ -65,3 +65,29 @@ username varchar(30)
 go
 
 
+alter table BookRecord
+add constraint Record_user
+Foreign key (isuser) references [User](username) on update cascade on delete cascade
+go
+ 
+
+
+alter table BookRecord
+add constraint Record_book
+Foreign key (book) references [Book](ISBN) on DELETE cascade on update cascade
+go
+
+alter table Librarian
+add constraint lib_u
+foreign key (username)  references [User](username) on delete cascade on update cascade
+go
+
+alter table Borrower
+add constraint bor_u
+foreign key (username)  references [User](username) on delete cascade on update cascade
+go
+
+alter table Clerk
+add constraint cl_u
+foreign key (username)  references [User](username) on delete cascade on update cascade
+go
