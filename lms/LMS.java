@@ -16,7 +16,7 @@ public class LMS {
     static {
         LMS.Users.add(new Librarian("admin", "123", "Administrator", "Male", 25)); 
         LMS.Users.add(new Clerk("clerk", "123", "Clerk", "Male", 42)); 
-        LMS.Users.add(new Borrower("student", "123", "Student", "Male", 21)); 
+        LMS.Users.add(new Borrower("student", "123", "Student", "Female", 21)); 
     } 
     
     LMS(){
