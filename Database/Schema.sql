@@ -1,7 +1,7 @@
---Remove -- to create database LMS
 
---create database LMS
---go
+
+create database LMS
+go
 
 use LMS
 go
@@ -17,6 +17,7 @@ quantity int not null
 )
 go
 
+
 --Table for book record
 create table BookRecord
 (
@@ -26,6 +27,7 @@ book char(13),
 issueDate datetime not null,
 returnDate datetime,
 dueDate datetime not null,
+fine int
 )
 go
 
