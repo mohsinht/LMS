@@ -1,6 +1,6 @@
 package lms;
 
-public class User {
+abstract class User {
     String username;
     String password;
     String Name;

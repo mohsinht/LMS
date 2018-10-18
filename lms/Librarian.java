@@ -6,4 +6,9 @@ public class Librarian extends User {
         super(username, password, Name, Gender, Age);
     }
     
+    public boolean addBook(Book b){
+        LMS.Books.add(b);
+        return true;
+    }
+    
 }
