@@ -1,5 +1,6 @@
 package lms;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class Book {
@@ -7,7 +8,7 @@ public class Book {
     String Author;
     String ISBN;
     String Status;
-    Queue reserve;
+    Queue<User> reserve = new LinkedList<>(); 
     int quantity;
     
     public Book(String Name, String Author, String ISBN, int quantity) {
@@ -52,5 +53,17 @@ public class Book {
     
     public void setQuantity(int qty) {
         this.quantity = qty;
+    }
+    
+    protected boolean reserveBook(User u){
+        if(this.Status.equals("unavailable")){
+            return false;
+        }
+        if(this.reserve.contains(u)){
+            return false;
+        }
+        this.reserve.add(u);
+
+        return true;
     }
 }

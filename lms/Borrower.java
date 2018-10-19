@@ -26,7 +26,11 @@ public class Borrower extends User{
     }
 	//Probably needs an array for storing all the borrowed books
 	
-	
+    public boolean reserveBook(Book b){
+        return b.reserveBook(this);
+    }
+    
+    
     public ArrayList<Book> searchBook(String query){
         query = query.toLowerCase();
         ArrayList<Book> result = new ArrayList<>();
@@ -65,4 +69,5 @@ public class Borrower extends User{
         this.dept = dept;
         this.campus = campus;
     }
+    
 }

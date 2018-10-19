@@ -13,6 +13,8 @@ public class LMS {
     protected static int loginMode = 0; //1, 2, 3 for Borrower, Clerk and Librarian respectively
     protected static User loggedInUser;
     
+    protected static ArrayList<BookRecord> records = new ArrayList<>();
+    
     static {
         LMS.Users.add(new Librarian("admin", "123", "Administrator", "Male", 25)); 
         LMS.Users.add(new Clerk("clerk", "123", "Clerk", "Male", 42)); 
@@ -20,8 +22,8 @@ public class LMS {
         LMS.Books.add(new Book("Little Book of Semaphores", "Sir Aamir Raheem", "123132", 25));
         LMS.Books.add(new Book("Lord of the Rings", "Micheal Faraday", "125521", 10));
         LMS.Books.add(new Book("Harry Potter", "Weasly Mormont", "634643", 2));
-        Borrower b = (Borrower)LMS.Users.get(2);
-        System.out.println(b.searchBook("l"));
+        LMS.Books.add(new Book("Sherlock Holmes", "Chris Gayle", "436436", 12));
+        LMS.Books.add(new Book("Data Structures", "Saira Karim", "235352", 1));
     } 
     
     LMS(){
@@ -59,5 +61,16 @@ public class LMS {
             }
         }
         return false;
+    }
+    
+    public static Book getBook(String name, String isbn){
+        name = name.toLowerCase();
+        for(int k=0; k<LMS.Books.size(); k++){
+            Book bn = LMS.Books.get(k);
+            if(bn.getName().toLowerCase().equals(name) && bn.getISBN().toLowerCase().equals(isbn)){
+                return LMS.Books.get(k);
+            }
+        }
+        return null;
     }
 }
