@@ -66,4 +66,8 @@ public class Book {
 
         return true;
     }
+    
+    protected boolean isReserved(User u){
+        return this.reserve.contains(u);
+    }
 }

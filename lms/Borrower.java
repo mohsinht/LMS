@@ -1,14 +1,15 @@
 package lms;
 import java.util.*;
 
-
 public class Borrower extends User{
 
     
     String rollNo;
     String dept;
     String campus;
-
+    ArrayList<reservationDate> reservedBooks = new ArrayList<>();
+    
+    
     public String getRollNo() {
         return rollNo;
     }
@@ -27,6 +28,7 @@ public class Borrower extends User{
 	//Probably needs an array for storing all the borrowed books
 	
     public boolean reserveBook(Book b){
+        reservedBooks.add(new reservationDate(b, new Date()));
         return b.reserveBook(this);
     }
     
@@ -70,4 +72,8 @@ public class Borrower extends User{
         this.campus = campus;
     }
     
+    
+    public ArrayList<reservationDate> reservedBooks(){
+        return this.reservedBooks;
+    } 
 }
