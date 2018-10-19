@@ -56,7 +56,8 @@ create table Borrower
 (
 username varchar(30),
 dept varchar(30),
-campus varchar(30)
+campus varchar(30),
+rollno varchar(10)
 )
 go
 
