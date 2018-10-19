@@ -3,12 +3,13 @@ package lms;
 import java.util.Date;
 public class BookRecord {
     User issuer;
+    User issuedTo;
     Book book;
     Date issueDate;
     Date returnDate;
     int id;
-	Date dueDate;
-	int fine = 0;
+    Date dueDate;
+    int fine = 0;
 
     public BookRecord(User issuer, Book book, Date issueDate, Date returnDate, int id) {
         this.issuer = issuer;
