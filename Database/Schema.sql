@@ -54,7 +54,9 @@ go
 --Modify this for any extra attribute of Borrower, delete in case of no new attribute
 create table Borrower
 (
-username varchar(30)
+username varchar(30),
+dept varchar(30),
+campus varchar(30)
 )
 go
 
