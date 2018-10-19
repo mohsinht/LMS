@@ -16,14 +16,11 @@ public class LMS {
     protected static ArrayList<BookRecord> records = new ArrayList<>();
     
     static {
+        dbConnectivity db = new dbConnectivity();
         LMS.Users.add(new Librarian("admin", "123", "Administrator", "Male", 25)); 
         LMS.Users.add(new Clerk("clerk", "123", "Clerk", "Male", 42)); 
         LMS.Users.add(new Borrower("student", "123", "Student", "Female", 21));
-        LMS.Books.add(new Book("Little Book of Semaphores", "Sir Aamir Raheem", "123132", 25));
-        LMS.Books.add(new Book("Lord of the Rings", "Micheal Faraday", "125521", 10));
-        LMS.Books.add(new Book("Harry Potter", "Weasly Mormont", "634643", 2));
-        LMS.Books.add(new Book("Sherlock Holmes", "Chris Gayle", "436436", 12));
-        LMS.Books.add(new Book("Data Structures", "Saira Karim", "235352", 1));
+        db.loadBooks();
     } 
     
     LMS(){
