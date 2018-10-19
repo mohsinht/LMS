@@ -16,7 +16,12 @@ public class LMS {
     static {
         LMS.Users.add(new Librarian("admin", "123", "Administrator", "Male", 25)); 
         LMS.Users.add(new Clerk("clerk", "123", "Clerk", "Male", 42)); 
-        LMS.Users.add(new Borrower("student", "123", "Student", "Female", 21)); 
+        LMS.Users.add(new Borrower("student", "123", "Student", "Female", 21));
+        LMS.Books.add(new Book("Little Book of Semaphores", "Sir Aamir Raheem", "123132", 25));
+        LMS.Books.add(new Book("Lord of the Rings", "Micheal Faraday", "125521", 10));
+        LMS.Books.add(new Book("Harry Potter", "Weasly Mormont", "634643", 2));
+        Borrower b = (Borrower)LMS.Users.get(2);
+        System.out.println(b.searchBook("l"));
     } 
     
     LMS(){

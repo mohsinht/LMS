@@ -34,6 +34,10 @@ public class Book {
         this.Name = Name;
     }
 
+    public String getStatus() {
+        return Status;
+    }
+
     public void setAuthor(String Author) {
         this.Author = Author;
     }

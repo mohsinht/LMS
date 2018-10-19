@@ -28,10 +28,11 @@ public class Borrower extends User{
 	
 	
     public ArrayList<Book> searchBook(String query){
+        query = query.toLowerCase();
         ArrayList<Book> result = new ArrayList<>();
-        for(int k=0; k<LMS.bookCount; k++){
+        for(int k=0; k<LMS.Books.size(); k++){
             Book bn = LMS.Books.get(k);
-            if(bn.getName().contains(query) || bn.getAuthor().contains(query) || bn.getISBN().contains(query)){
+            if(bn.getName().toLowerCase().contains(query) || bn.getAuthor().toLowerCase().contains(query) || bn.getISBN().toLowerCase().contains(query)){
                 result.add(LMS.Books.get(k));
             }
         }
