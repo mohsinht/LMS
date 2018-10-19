@@ -180,7 +180,7 @@ public class librarianPortal extends javax.swing.JFrame {
             .addGap(0, 474, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Change Books", jPanel10);
+        jTabbedPane3.addTab("Update Books", jPanel10);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
