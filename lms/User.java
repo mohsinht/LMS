@@ -17,7 +17,7 @@ abstract class User {
         this.Gender = Gender;
         this.Age = Age;
     }
-
+    abstract void changeResStatus(Book b, String Status);
     public void setUsername(String username) {
         this.username = username;
     }

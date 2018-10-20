@@ -15,7 +15,14 @@ public class Librarian extends User {
     public void reserveBook(Book b, Date d) {
         reservedBooks.add(new reservationDate(b, d));
     }
-
+    @Override
+    public void changeResStatus(Book b, String Status){
+        for (int k = 0; k < reservedBooks.size(); k++) {
+            if(reservedBooks.get(k).getBook() == b){
+                reservedBooks.get(k).setStatus(Status);
+            }
+        }
+    }
     @Override
     public void reserveBook(Book b, Date d, String status) {
         reservedBooks.add(new reservationDate(b, d, status));

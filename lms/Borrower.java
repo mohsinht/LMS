@@ -82,7 +82,14 @@ public class Borrower extends User {
         this.campus = campus;
 
     }
-
+    @Override
+    public void changeResStatus(Book b, String Status){
+        for (int k = 0; k < reservedBooks.size(); k++) {
+            if(reservedBooks.get(k).getBook() == b){
+                reservedBooks.get(k).setStatus(Status);
+            }
+        }
+    }
     public ArrayList<reservationDate> reservedBooks() {
         return this.reservedBooks;
     }
