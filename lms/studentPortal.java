@@ -6,6 +6,7 @@
 package lms;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +18,7 @@ public class studentPortal extends javax.swing.JFrame {
     /**
      * Creates new form studentPortal
      */
+    dbConnectivity db = new dbConnectivity();
     Borrower s = (Borrower)LMS.loggedInUser;
     public studentPortal() {
         initComponents();
@@ -32,6 +34,7 @@ public class studentPortal extends javax.swing.JFrame {
         jTable1.setDefaultEditor(Object.class, null);
         jButton3.setVisible(false);
         jButton4.setVisible(false);
+        db.loadPendingReservations();
         pendingReservationsLoadData();
     }
     
@@ -72,6 +75,17 @@ public class studentPortal extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
         jDialog2 = new javax.swing.JDialog();
         jPanel6 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
@@ -172,31 +186,113 @@ public class studentPortal extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
         jLabel14.setText("Not Selected");
 
+        jLabel22.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel22.setText("Aurthor:");
+
+        jLabel23.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+        jLabel23.setText("Not Selected");
+
+        jLabel24.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel24.setText("56");
+
+        jLabel25.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel25.setText("ISBN:");
+
+        jLabel26.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel26.setText("Quantity:");
+
+        jLabel27.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel27.setText("Not Selected");
+
+        jLabel28.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+
+        jLabel29.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+        jLabel29.setText("Not Selected");
+
+        jLabel30.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel30.setText("Status:");
+
+        jLabel31.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel31.setText("Waiting:");
+
+        jLabel32.setFont(new java.awt.Font("Raleway Medium", 0, 14)); // NOI18N
+        jLabel32.setText("Not Selected");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(292, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addGap(21, 21, 21))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(jLabel28)
+                .addGap(82, 82, 82)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel26)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel22)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel31)
+                    .addComponent(jLabel30))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel14))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(125, 125, 125)
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(24, 24, 24))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                .addComponent(jButton5)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(jLabel30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel31))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -349,7 +445,10 @@ public class studentPortal extends javax.swing.JFrame {
         jTextField2.setFont(new java.awt.Font("Raleway Medium", 0, 12)); // NOI18N
         jTextField2.setText("name");
 
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(46, 124, 172));
         jTextField4.setFont(new java.awt.Font("Raleway Medium", 0, 12)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(255, 255, 255));
         jTextField4.setText("name");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -436,14 +535,14 @@ public class studentPortal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
+                                .addGap(28, 28, 28)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap(42, Short.MAX_VALUE)
+                                .addContainerGap(40, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1031,8 +1130,10 @@ public class studentPortal extends javax.swing.JFrame {
         if(jComboBox1.getSelectedIndex() == 1){
             g = "Female";
         }
+        db.updateBorrower(jTextField3.getText(), jTextField5.getText(), jTextField6.getText(), jTextField4.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
         //String rollNo, String dept, String campus, String username, String password, String Name, String Gender, int Age
         s.update(jTextField3.getText(), jTextField5.getText(), jTextField6.getText(), jTextField4.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
@@ -1080,7 +1181,13 @@ public class studentPortal extends javax.swing.JFrame {
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
-        jLabel14.setText(jTable1.getValueAt(k, 1).toString());
+        Book selB = LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString());
+        jLabel14.setText(selB.getName());
+        jLabel23.setText(selB.getAuthor());
+        jLabel24.setText(selB.getISBN());
+        jLabel27.setText(String.valueOf(selB.getQty()));
+        jLabel29.setText(selB.getStatus());
+        jLabel32.setText(String.valueOf(selB.getReservationSize()));
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setVisible(true);
 
@@ -1124,6 +1231,7 @@ public class studentPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
         if(s.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
+            db.reservationDate(s.getUsername(), jTable1.getValueAt(k, 0).toString(), "pending", new Date());
             jDialog2.setVisible(true);
             jLabel15.setText("Your book has been added to the queue. Please wait");
             jLabel16.setText("while the upper staff approves your request.");
@@ -1149,6 +1257,7 @@ public class studentPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
         if(s.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
+            db.reservationDate(s.getUsername(), jTable1.getValueAt(k, 0).toString(), "pending", new Date());
             jDialog1.setVisible(false);
             jDialog2.setVisible(true);
             jLabel15.setText("Your book has been added to the queue. Please wait");
@@ -1222,7 +1331,18 @@ public class studentPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
