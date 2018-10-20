@@ -134,7 +134,6 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
-<<<<<<< HEAD
         jPanel11 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -161,7 +160,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-=======
+  
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -195,7 +194,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
->>>>>>> origin/master
+   
         jLabel17 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -227,7 +226,6 @@ public class clerkPortal extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-<<<<<<< HEAD
         jPanel12 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -237,7 +235,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-=======
+  
         jPanel11 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -255,7 +253,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPasswordField1 = new javax.swing.JPasswordField();
->>>>>>> origin/master
+   
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -1121,7 +1119,6 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
             .addGap(0, 603, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1131,7 +1128,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGap(0, 516, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
+  
             .addGap(0, 594, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -1147,16 +1144,15 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Profile", jPanel3);
 
-<<<<<<< HEAD
         jPanel6.setBackground(new java.awt.Color(46, 124, 172));
 
-=======
->>>>>>> origin/master
+  
+   
         jPanel2.setBackground(new java.awt.Color(62, 175, 237));
 
         jTextField7.setFont(new java.awt.Font("Raleway Medium", 0, 18)); // NOI18N
@@ -1185,19 +1181,19 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-<<<<<<< HEAD
+ 
                 .addGap(87, 87, 87)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(55, Short.MAX_VALUE))
-=======
+  
                 .addGap(75, 75, 75)
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
->>>>>>> origin/master
+   
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1209,8 +1205,8 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
-=======
+ 
+  
         jPanel6.setBackground(new java.awt.Color(46, 124, 172));
 
         jPanel8.setBackground(new java.awt.Color(62, 175, 237));
@@ -1257,7 +1253,7 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
->>>>>>> origin/master
+   
         jTable1.setAutoCreateRowSorter(true);
         jTable1.setFont(new java.awt.Font("Raleway Medium", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -1278,11 +1274,11 @@ public class clerkPortal extends javax.swing.JFrame {
         });
         jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.setGridColor(new java.awt.Color(204, 255, 255));
-<<<<<<< HEAD
+ 
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-=======
+  
         jTable1.setSelectionMode();
->>>>>>> origin/master
+   
         jTable1.getTableHeader().setReorderingAllowed(false);
         jTable1.setVerifyInputWhenFocusTarget(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1302,7 +1298,7 @@ public class clerkPortal extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-<<<<<<< HEAD
+ 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Raleway SemiBold", 0, 14)); // NOI18N
         jButton3.setForeground(new java.awt.Color(46, 124, 172));
@@ -1318,22 +1314,22 @@ public class clerkPortal extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(46, 124, 172));
         jButton4.setText("See Info");
         jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-=======
+  
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Raleway SemiBold", 0, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(46, 124, 172));
         jButton4.setText("Reserve");
->>>>>>> origin/master
+   
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
             }
         });
-<<<<<<< HEAD
+ 
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
-=======
+  
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setFont(new java.awt.Font("Raleway SemiBold", 0, 14)); // NOI18N
@@ -1348,7 +1344,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
->>>>>>> origin/master
+   
             }
         });
 
@@ -1364,43 +1360,43 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-=======
+  
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
->>>>>>> origin/master
+   
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(jLabel21))
-<<<<<<< HEAD
+ 
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30))
-=======
+  
                         .addGap(42, 42, 42)
                         .addComponent(jButton5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46))
->>>>>>> origin/master
+   
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-<<<<<<< HEAD
+ 
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1409,7 +1405,7 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton3)
                         .addComponent(jButton4))
-=======
+  
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1418,23 +1414,23 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton4)
                         .addComponent(jButton5))
->>>>>>> origin/master
+   
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(0, 0, 0)
                         .addComponent(jLabel21)))
-<<<<<<< HEAD
+ 
                 .addContainerGap(49, Short.MAX_VALUE))
-=======
+  
                 .addContainerGap(34, Short.MAX_VALUE))
->>>>>>> origin/master
+   
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addGap(0, 603, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1444,7 +1440,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGap(0, 516, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-=======
+  
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -1464,7 +1460,7 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Search Book", jPanel4);
@@ -1660,13 +1656,13 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addGap(0, 603, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 516, Short.MAX_VALUE)
-=======
+  
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1680,7 +1676,7 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 22, Short.MAX_VALUE))
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Search Student", jPanel5);
@@ -1824,13 +1820,13 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addGap(0, 603, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 516, Short.MAX_VALUE)
-=======
+  
             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
@@ -1838,7 +1834,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Add Student", jPanel7);
@@ -1851,16 +1847,16 @@ public class clerkPortal extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addGap(0, 516, Short.MAX_VALUE)
-=======
+  
             .addGap(0, 514, Short.MAX_VALUE)
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Book Records", jPanel9);
 
-<<<<<<< HEAD
+ 
         jPanel12.setBackground(new java.awt.Color(46, 124, 172));
 
         jLabel19.setFont(new java.awt.Font("Raleway ExtraBold", 0, 18)); // NOI18N
@@ -1931,7 +1927,7 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(102, Short.MAX_VALUE))
-=======
+  
         jPanel11.setBackground(new java.awt.Color(62, 175, 237));
         jPanel11.setForeground(new java.awt.Color(255, 255, 255));
         jPanel11.setToolTipText("");
@@ -2118,20 +2114,20 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addGap(137, 137, 137)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(68, Short.MAX_VALUE))
->>>>>>> origin/master
+   
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
+ 
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-=======
+  
             .addGap(0, 588, Short.MAX_VALUE)
             .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel10Layout.createSequentialGroup()
@@ -2147,7 +2143,7 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
->>>>>>> origin/master
+   
         );
 
         jTabbedPane3.addTab("Checkin", jPanel10);
@@ -2290,7 +2286,7 @@ public class clerkPortal extends javax.swing.JFrame {
         new Login().setVisible(true);
     }//GEN-LAST:event_jMenu2ActionPerformed
 
-<<<<<<< HEAD
+ 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -2320,7 +2316,7 @@ public class clerkPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
-=======
+  
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
         // TODO add your handling code here:
         if(jTextField7.getText().equals("Search by Name, ISBN or Author")){
@@ -2360,40 +2356,40 @@ public class clerkPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jTextField8FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusGained
->>>>>>> origin/master
+   
         // TODO add your handling code here:
         if(jTextField7.getText().equals("Search by Name, ISBN or Author")){
             jTextField7.setText("");
             jTextField7.setForeground(new java.awt.Color(0, 0, 0));
         }
 
-<<<<<<< HEAD
+ 
     }//GEN-LAST:event_jTextField7FocusGained
 
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
-=======
+  
     }//GEN-LAST:event_jTextField8FocusGained
 
     private void jTextField8FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField8FocusLost
->>>>>>> origin/master
+   
         if(jTextField7.getText().equals("")){
             jTextField7.setText("Search by Name, ISBN or Author");
             jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         }
-<<<<<<< HEAD
+ 
     }//GEN-LAST:event_jTextField7FocusLost
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         ArrayList<Book> bookRes = c.searchBook(jTextField7.getText());
         System.out.println("Size: " + jTextField7.getText());
-=======
+  
     }//GEN-LAST:event_jTextField8FocusLost
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         ArrayList<Book> bookRes = s.searchBook(jTextField7.getText());
->>>>>>> origin/master
+   
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
@@ -2411,11 +2407,11 @@ public class clerkPortal extends javax.swing.JFrame {
             rowData[3] = bookRes.get(i).getStatus();
             model.addRow(rowData);
         }
-<<<<<<< HEAD
+ 
     }//GEN-LAST:event_jButton2MouseClicked
-=======
+  
     }//GEN-LAST:event_jButton3MouseClicked
->>>>>>> origin/master
+   
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
@@ -2447,18 +2443,18 @@ public class clerkPortal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1VetoableChange
 
-<<<<<<< HEAD
+ 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
         if(c.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
             db.reservationDate(c.getUsername(), jTable1.getValueAt(k, 0).toString(), "pending", new Date());
-=======
+  
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
         if(s.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
->>>>>>> origin/master
+   
             jDialog2.setVisible(true);
             jLabel15.setText("Your book has been added to the queue. Please wait");
             jLabel16.setText("while the upper staff approves your request.");
@@ -2468,7 +2464,7 @@ public class clerkPortal extends javax.swing.JFrame {
             jLabel15.setText("Your request has been rejected. Either the book is");
             jLabel16.setText("unavailable or you have already placed a request.");
         }
-<<<<<<< HEAD
+ 
     }//GEN-LAST:event_jButton3MouseClicked
 
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
@@ -2589,7 +2585,7 @@ public class clerkPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7MouseClicked
 
-=======
+  
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -2765,7 +2761,7 @@ public class clerkPortal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField16ActionPerformed
 
->>>>>>> origin/master
+   
     /**
      * @param args the command line arguments
      */
@@ -2803,13 +2799,13 @@ public class clerkPortal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-<<<<<<< HEAD
-=======
+ 
+  
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
->>>>>>> origin/master
+   
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -2817,14 +2813,14 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox1;
-<<<<<<< HEAD
+ 
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
-=======
+  
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
->>>>>>> origin/master
+   
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2846,7 +2842,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-<<<<<<< HEAD
+ 
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -2857,9 +2853,9 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
-=======
+  
     private javax.swing.JLabel jLabel3;
->>>>>>> origin/master
+   
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2873,20 +2869,20 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-<<<<<<< HEAD
+ 
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
-=======
+  
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
->>>>>>> origin/master
+   
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2895,7 +2891,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
-<<<<<<< HEAD
+ 
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2907,7 +2903,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-=======
+  
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2924,7 +2920,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
->>>>>>> origin/master
+   
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
