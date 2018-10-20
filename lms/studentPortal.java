@@ -36,6 +36,7 @@ public class studentPortal extends javax.swing.JFrame {
         jButton4.setVisible(false);
         db.loadPendingReservations();
         pendingReservationsLoadData();
+        populateReservationData();
     }
     
     public void pendingReservationsLoadData(){
@@ -55,6 +56,26 @@ public class studentPortal extends javax.swing.JFrame {
             rowData[2] = bookRes.get(i).getDate();
             rowData[1] = bookRes.get(i).getStatus();
             model.addRow(rowData);
+        }
+    }
+    
+    public void populateReservationData(){
+        //System.out.println("username: " + LMS.records.get(0).getIssuedTo().getUsername());
+        DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        Object rowData[] = new Object[5];
+        for(int i = 0; i < LMS.records.size(); i++)
+        {
+            if(LMS.records.get(i).getIssuedTo().getUsername().equals(s.getUsername())){
+                rowData[0] = LMS.records.get(i).getBook().getName();
+                rowData[1] = LMS.records.get(i).getIssuer().getUsername();
+                rowData[2] = LMS.records.get(i).issueDate.toString();
+                rowData[3] = LMS.records.get(i).getDueDate().toString();
+                rowData[4] = LMS.records.get(i).getFine();
+                model.addRow(rowData);
+            }
         }
     }
     /**
@@ -542,7 +563,7 @@ public class studentPortal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel11))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap(40, Short.MAX_VALUE)
+                                .addContainerGap(46, Short.MAX_VALUE)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -811,7 +832,7 @@ public class studentPortal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Book Title", "Status", "Reserved On", "Due Date", "Fine"
+                "Book Title", "Issued By", "Reserved On", "Due Date", "Fine"
             }
         ) {
             Class[] types = new Class [] {
@@ -836,9 +857,7 @@ public class studentPortal extends javax.swing.JFrame {
             jTable5.getColumnModel().getColumn(1).setResizable(false);
             jTable5.getColumnModel().getColumn(2).setResizable(false);
             jTable5.getColumnModel().getColumn(3).setResizable(false);
-            jTable5.getColumnModel().getColumn(3).setHeaderValue("Due Date");
             jTable5.getColumnModel().getColumn(4).setResizable(false);
-            jTable5.getColumnModel().getColumn(4).setHeaderValue("Fine");
         }
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -850,7 +869,7 @@ public class studentPortal extends javax.swing.JFrame {
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -889,7 +908,7 @@ public class studentPortal extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Book Title", "Status", "Reserved On", "Due Date", "Fine"
+                "Book Title", "Status", "Reserved On", "Due Date", "Return Date"
             }
         ) {
             Class[] types = new Class [] {
@@ -914,9 +933,7 @@ public class studentPortal extends javax.swing.JFrame {
             jTable3.getColumnModel().getColumn(1).setResizable(false);
             jTable3.getColumnModel().getColumn(2).setResizable(false);
             jTable3.getColumnModel().getColumn(3).setResizable(false);
-            jTable3.getColumnModel().getColumn(3).setHeaderValue("Due Date");
             jTable3.getColumnModel().getColumn(4).setResizable(false);
-            jTable3.getColumnModel().getColumn(4).setHeaderValue("Fine");
         }
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -928,7 +945,7 @@ public class studentPortal extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1003,7 +1020,7 @@ public class studentPortal extends javax.swing.JFrame {
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1026,7 +1043,7 @@ public class studentPortal extends javax.swing.JFrame {
             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Pending Reservations", jPanel11);
+        jTabbedPane3.addTab("Status", jPanel11);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

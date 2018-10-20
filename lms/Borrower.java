@@ -84,8 +84,9 @@ public class Borrower extends User {
     }
     @Override
     public void changeResStatus(Book b, String Status){
+        System.out.println("Book: " + b.getName() + ", Status: " + Status);
         for (int k = 0; k < reservedBooks.size(); k++) {
-            if(reservedBooks.get(k).getBook() == b){
+            if(reservedBooks.get(k).getBook().getISBN().equals(b.getISBN())){
                 reservedBooks.get(k).setStatus(Status);
             }
         }

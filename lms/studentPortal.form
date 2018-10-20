@@ -552,7 +552,7 @@
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
-                                          <EmptySpace pref="40" max="32767" attributes="0"/>
+                                          <EmptySpace pref="46" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1201,7 +1201,7 @@
                                   <Component id="jScrollPane5" alignment="0" min="-2" pref="522" max="-2" attributes="0"/>
                                   <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1241,7 +1241,7 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="5" rowCount="4">
                                 <Column editable="false" title="Book Title" type="java.lang.String"/>
-                                <Column editable="false" title="Status" type="java.lang.Object"/>
+                                <Column editable="false" title="Issued By" type="java.lang.Object"/>
                                 <Column editable="false" title="Reserved On" type="java.lang.Object"/>
                                 <Column editable="false" title="Due Date" type="java.lang.Object"/>
                                 <Column editable="false" title="Fine" type="java.lang.Integer"/>
@@ -1265,12 +1265,12 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                  <Title value="Due Date"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                  <Title value="Fine"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
@@ -1325,7 +1325,7 @@
                                   <Component id="jScrollPane3" min="-2" pref="522" max="-2" attributes="0"/>
                                   <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1368,7 +1368,7 @@
                                 <Column editable="false" title="Status" type="java.lang.Object"/>
                                 <Column editable="false" title="Reserved On" type="java.lang.Object"/>
                                 <Column editable="false" title="Due Date" type="java.lang.Object"/>
-                                <Column editable="false" title="Fine" type="java.lang.Integer"/>
+                                <Column editable="false" title="Return Date" type="java.lang.Integer"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1389,12 +1389,12 @@
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                  <Title value="Due Date"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
                                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-                                  <Title value="Fine"/>
+                                  <Title/>
                                   <Editor/>
                                   <Renderer/>
                                 </Column>
@@ -1414,8 +1414,8 @@
             <Container class="javax.swing.JPanel" name="jPanel11">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Pending Reservations">
-                    <Property name="tabTitle" type="java.lang.String" value="Pending Reservations"/>
+                  <JTabbedPaneConstraints tabName="Status">
+                    <Property name="tabTitle" type="java.lang.String" value="Status"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1449,7 +1449,7 @@
                                   <Component id="jScrollPane4" alignment="0" min="-2" pref="522" max="-2" attributes="0"/>
                                   <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="27" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

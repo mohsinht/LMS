@@ -59,8 +59,7 @@ public class dbConnectivity {
             LMS.Books.clear();
             while(rs.next())
             {                 
-
-               LMS.Books.add(new Book(rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5)));
+               LMS.Books.add(new Book(rs.getString(2).trim(), rs.getString(3).trim(), rs.getString(4).trim(), rs.getInt(5)));
             }
         }
         catch(Exception e)
@@ -92,10 +91,10 @@ public class dbConnectivity {
             ResultSet rs=stmt.executeQuery("select * from reservationDate");
             while(rs.next())
             {                 
-               String username = rs.getString(2);
-               String isbn = rs.getString(1);
-               String date = rs.getString(3);
-               String status = rs.getString(4);
+               String username = rs.getString(2).trim();
+               String isbn = rs.getString(1).trim();
+               String date = rs.getString(3).trim();
+               String status = rs.getString(4).trim();
                LMS.getBook(isbn).reserveBook(LMS.getUser(username));
                SimpleDateFormat format=new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");  
                LMS.getUser(username).reserveBook(LMS.getBook(isbn), format.parse(date), status);
