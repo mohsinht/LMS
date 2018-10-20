@@ -22,11 +22,6 @@ public class reservationDate {
         this.status = "pending";
     }
 
-    public reservationDate(Book book, Date date, String s) {
-        this.book = book;
-        this.date = date;
-        this.status = s;
-    }
     public Book getBook() {
         return book;
     }

@@ -7,10 +7,11 @@ public class BookRecord {
     Book book;
     Date issueDate;
     Date returnDate;
+    int id;
     Date dueDate;
     int fine = 0;
-
     public BookRecord(User issuer, User issuedTo, Book book, Date issueDate, Date dueDate) {
+
         this.issuer = issuer;
         this.issuedTo = issuedTo;
         this.book = book;
@@ -24,7 +25,7 @@ public class BookRecord {
         this.book = book;
         this.issueDate = issueDate;
         this.returnDate = returnDate;
-        this.dueDate = dueDate;
+        this.id = id;
     }
 
     public User getIssuer() {

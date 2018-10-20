@@ -30,9 +30,7 @@ public class Book {
     public String getISBN() {
         return ISBN;
     }
-    public int getQty() {
-        return quantity;
-    }
+
     public void setName(String Name) {
         this.Name = Name;
     }
@@ -70,14 +68,6 @@ public class Book {
     }
     
     protected boolean isReserved(User u){
-        return this.reserve.contains(u); 
+        return this.reserve.contains(u);
     }
-    public int getReservationSize() {
-        return this.reserve.size();
-    }
-    
-    public User topInQ(){
-        return reserve.peek();
-    }
-
 }
