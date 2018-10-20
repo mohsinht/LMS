@@ -1,5 +1,8 @@
 package lms;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 abstract class User {
     String username;
     String password;
@@ -54,5 +57,7 @@ abstract class User {
     public int getAge() {
         return Age;
     }
-    
+    abstract void reserveBook(Book b, Date d);
+    abstract void reserveBook(Book b, Date d, String status);
+    abstract ArrayList<reservationDate> getResInfo();
 }
