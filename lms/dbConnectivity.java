@@ -184,3 +184,104 @@ public class dbConnectivity {
         }
     }
 }
+
+
+
+/*
+DB SCHEMA FOR TABLES:
+
+CREATE DATABASE [lms]
+
+
+CREATE TABLE [dbo].[book](
+	[id] [int] NOT NULL,
+	[title] [nchar](30) NOT NULL,
+	[author] [nchar](30) NOT NULL,
+	[isbn] [nchar](10) NOT NULL,
+	[quantity] [int] NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[bookRecord](
+	[isbn] [nchar](10) NOT NULL,
+	[issuedto] [varchar](50) NOT NULL,
+	[issuedby] [varchar](50) NOT NULL,
+	[date] [varchar](50) NOT NULL,
+	[dueDate] [varchar](50) NOT NULL,
+	[returnDate] [varchar](50) NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[Clerk](
+	[id] [int] NOT NULL,
+	[name] [nchar](50) NOT NULL,
+	[age] [int] NOT NULL,
+	[username] [nchar](50) NOT NULL,
+	[password] [nchar](50) NOT NULL,
+	[gender] [nchar](10) NOT NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[librarian](
+	[id] [int] NOT NULL,
+	[name] [nchar](30) NOT NULL,
+	[gender] [nchar](10) NOT NULL,
+	[age] [int] NOT NULL,
+	[username] [nchar](20) NOT NULL,
+	[password] [nchar](20) NOT NULL
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[reservationDate](
+	[isbn] [nchar](10) NOT NULL,
+	[username] [varchar](50) NOT NULL,
+	[reservedOn] [varchar](50) NOT NULL,
+	[status] [nchar](10) NULL,
+	[id] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_reservationDate] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+CREATE TABLE [dbo].[student](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[name] [nchar](50) NOT NULL,
+	[age] [int] NOT NULL,
+	[department] [nchar](50) NULL,
+	[campus] [nchar](50) NULL,
+	[rollno] [nchar](10) NULL,
+	[username] [varchar](50) NOT NULL,
+	[password] [varchar](50) NOT NULL,
+	[gender] [nchar](10) NOT NULL
+) ON [PRIMARY]
+GO
+
+
+
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (1, N'In Search of Lost Time        ', N'Marcel Proust                 ', N'1251253   ', 2)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (2, N'Don Quixote                   ', N'Miguel de Cervantes           ', N'3212421   ', 6)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (3, N'The Great Gatsby              ', N'F. Scott Fitzgerald           ', N'1242144   ', 23)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (4, N'War and Peace                 ', N'Leo Tolstoy
+                 ', N'1235512   ', 2)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (5, N'The Odyssey                   ', N'Homer                         ', N'7434544   ', 5)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (6, N'Crime and Punishment          ', N'Fyodor Dostoyevsky            ', N'2342312   ', 2)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (7, N'Alice''s Adventures            ', N'Lewis Carroll                 ', N'3243455   ', 7)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (8, N'Pride and Prejudice           ', N'Jane Austen                   ', N'1242552   ', 4)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (9, N'The Sound and the Fury        ', N'William Faulkner              ', N'3253256   ', 2)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (10, N'Great Expectations            ', N'Charles Dickens               ', N'5464778   ', 1)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (11, N'Middlemarch                   ', N'George Eliot                  ', N'4223677   ', 2)
+INSERT [dbo].[book] ([id], [title], [author], [isbn], [quantity]) VALUES (12, N'Little Book of Semaphores     ', N'Aamir Raheem                  ', N'8152123   ', 9)
+INSERT [dbo].[Clerk] ([id], [name], [age], [username], [password], [gender]) VALUES (1, N'Mr. Clerk                                         ', 23, N'clerk                                             ', N'123                                               ', N'Male      ')
+INSERT [dbo].[librarian] ([id], [name], [gender], [age], [username], [password]) VALUES (1, N'Administrator                 ', N'Male      ', 25, N'admin               ', N'123  
+
+
+
+INSERT [dbo].[reservationDate] ([isbn], [username], [reservedOn], [status], [id]) VALUES (N'3212421   ', N'mohsin', N'Sun Oct 21 01:48:44 PKT 2018', N'Issued    ', 14)
+INSERT [dbo].[reservationDate] ([isbn], [username], [reservedOn], [status], [id]) VALUES (N'8152123   ', N'clerk', N'Sun Oct 21 14:28:42 PKT 2018', N'Issued    ', 15)
+INSERT [dbo].[reservationDate] ([isbn], [username], [reservedOn], [status], [id]) VALUES (N'1251253   ', N'mohsin', N'Sun Oct 21 14:29:44 PKT 2018', N'pending   ', 16)
+
+
+INSERT [dbo].[student] ([id], [name], [age], [department], [campus], [rollno], [username], [password], [gender]) VALUES (9, N'Mohsin', 21, N'Computer Science', N'Lahore', N'L16-4333  ', N'mohsin', N'123', N'Male ')
+*/
