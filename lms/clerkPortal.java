@@ -34,6 +34,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jButton3.setVisible(false);
         jButton4.setVisible(false);
         db.loadPendingReservations();
+        db.retrieveBookRecords();
         pendingReservationsLoadData();
         populateReservationData();
     }
@@ -64,6 +65,7 @@ public class clerkPortal extends javax.swing.JFrame {
         }
         Object rowData[] = new Object[4];
         for(int i = 0; i<LMS.Books.size(); i++){
+            boolean flag = false;
             u = LMS.Books.get(i).topInQ();
             if(u == null){
                 continue;
@@ -76,10 +78,13 @@ public class clerkPortal extends javax.swing.JFrame {
                     System.out.println(rd.get(j).getStatus());
                     rowData[2] = rd.get(j).getStatus();
                     rowData[3] = rd.get(j).getDate().toString();
+                    flag = true;
                     break;
                 }
             }
-            model.addRow(rowData);
+            if(rowData[2].equals("pending")){
+                model.addRow(rowData);
+            }
         }
     }
     
@@ -1840,13 +1845,15 @@ public class clerkPortal extends javax.swing.JFrame {
         try{
             dueDate = format.parse(jTextField11.getText());
             LMS.records.add(new BookRecord(issuer, issuedTo, book, issueDate, dueDate));
+            db.changeResStatus("Issued", book.getISBN(),issuedTo.getUsername());
+            db.insertBookRecord(book.getISBN(), issuedTo.getUsername(), issuer.getUsername(), issueDate.toString(), dueDate.toString(), "-");
         }catch(Exception e){
             System.out.println(e);
         }
         jDialog3.setVisible(false);
         book.reserve.poll();
         issuedTo.changeResStatus(book, "Issued");
-        db.changeResStatus("Issued", book.getISBN(),issuedTo.getUsername());
+      
         successMessage("The book has been issued!");
         pendingReservationsLoadData();
         populateReservationData();

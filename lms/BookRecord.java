@@ -7,9 +7,7 @@ public class BookRecord {
     Book book;
     Date issueDate;
     Date returnDate;
-    int id;
     Date dueDate;
-    int fine = 0;
     public BookRecord(User issuer, User issuedTo, Book book, Date issueDate, Date dueDate) {
 
         this.issuer = issuer;
@@ -25,7 +23,6 @@ public class BookRecord {
         this.book = book;
         this.issueDate = issueDate;
         this.returnDate = returnDate;
-        this.id = id;
     }
 
     public User getIssuer() {
@@ -52,10 +49,16 @@ public class BookRecord {
         return dueDate;
     }
 
-    public int getFine() {
-        return fine;
+    public int getFine() { //fifty rupees per day after due date
+        if(returnDate == null){
+            return 0;
+        }
+        if(returnDate.before(dueDate)){
+            return 0;
+        }
+        int totalFine;
+        long timeDiff = returnDate.getTime() - dueDate.getTime();
+        totalFine = (int)(timeDiff/(1000*60*60*24) * 50);
+        return totalFine;
     }
-
-
-    
 }

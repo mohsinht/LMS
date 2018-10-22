@@ -19,6 +19,7 @@ public class LMS {
         dbConnectivity db = new dbConnectivity();
         db.loadUsers();
         db.loadBooks();
+        db.retrieveBookRecords();
     }
 
     LMS() {

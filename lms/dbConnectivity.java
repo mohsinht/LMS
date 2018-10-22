@@ -183,6 +183,52 @@ public class dbConnectivity {
             System.out.println(e);
         }
     }
+    
+    public void insertBookRecord(String isbn, String issuedTo, String issuedBy, String issueDate, String dueDate, String returnDate){
+        try {
+            PreparedStatement addedRecord = con.prepareStatement("INSERT INTO BookRecord (isbn, issuedTo, issuedBy, date, dueDate, returnDate) values (?,?,?,?,?,?)");
+            addedRecord.setString(1, isbn);
+            addedRecord.setString(2, issuedTo);
+            addedRecord.setString(3, issuedBy);
+            addedRecord.setString(4, issueDate);
+            addedRecord.setString(5, dueDate);
+            addedRecord.setString(6, returnDate);
+            addedRecord.executeQuery();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void retrieveBookRecords(){
+        try {
+            ResultSet rs = stmt.executeQuery("select * from BookRecord");
+            while (rs.next()) {
+              
+                Book book = LMS.getBook(rs.getString(1).trim());
+                User issuedTo = LMS.getUser(rs.getString(2).trim());
+                User issuedBy = LMS.getUser(rs.getString(3).trim());
+                String issueDateString = rs.getString(4).trim();
+                String dueDateString = rs.getString(5).trim();
+                String returnDateString = rs.getString(6).trim();
+                
+                SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+                Date issueDate = format.parse(issueDateString);
+                Date dueDate = format.parse(dueDateString);
+                if(!returnDateString.equals("-")){
+                    Date returnDate = format.parse(returnDateString);
+                    LMS.records.add(new BookRecord(issuedBy, issuedTo, book, issueDate, returnDate, dueDate));
+                }else{
+                    LMS.records.add(new BookRecord(issuedBy, issuedTo, book, issueDate, dueDate));
+                }
+                
+                
+                
+                
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
 
 
