@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -21,7 +22,7 @@ public class dbConnectivity {
             con = DriverManager.getConnection(s, "mohsin", "mohsinhayat007");
             stmt = con.createStatement();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e);
         }
     }
@@ -202,8 +203,9 @@ public class dbConnectivity {
     public void retrieveBookRecords(){
         try {
             ResultSet rs = stmt.executeQuery("select * from BookRecord");
+            LMS.records.clear();
             while (rs.next()) {
-              
+
                 Book book = LMS.getBook(rs.getString(1).trim());
                 User issuedTo = LMS.getUser(rs.getString(2).trim());
                 User issuedBy = LMS.getUser(rs.getString(3).trim());
@@ -214,17 +216,32 @@ public class dbConnectivity {
                 SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
                 Date issueDate = format.parse(issueDateString);
                 Date dueDate = format.parse(dueDateString);
+                
                 if(!returnDateString.equals("-")){
                     Date returnDate = format.parse(returnDateString);
                     LMS.records.add(new BookRecord(issuedBy, issuedTo, book, issueDate, returnDate, dueDate));
                 }else{
                     LMS.records.add(new BookRecord(issuedBy, issuedTo, book, issueDate, dueDate));
                 }
-                
-                
-                
-                
             }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updateReturnDate(String isbn, String issuedTo, String issueDate, String returnDate){
+        try {
+            
+            System.out.println("isbn = " + isbn + " issuedTo = " + issuedTo + " issueDate = " + issueDate);
+            PreparedStatement updatedRS = con.prepareStatement("UPDATE BookRecord SET "
+                    + "	returnDate = ? "
+                    + " WHERE isbn = ? and issuedto = ? and date = ?");
+
+            updatedRS.setString(1, returnDate);
+            updatedRS.setString(2, isbn);
+            updatedRS.setString(3, issuedTo);
+            updatedRS.setString(4, issueDate);
+            updatedRS.executeQuery();
         } catch (Exception e) {
             System.out.println(e);
         }

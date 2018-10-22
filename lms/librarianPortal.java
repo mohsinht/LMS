@@ -1525,7 +1525,12 @@ public class librarianPortal extends javax.swing.JFrame {
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
         LMS.loggedIn = false;
+        Login.username = "";
+        Login.password = "";
         LMS.loginMode = 0;
+        Login.isClerk = false;
+        Login.isStudent = true;
+        Login.isLibrarian = false;
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked

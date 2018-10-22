@@ -1438,10 +1438,10 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(jLabel19)
                 .addContainerGap(411, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1562,7 +1562,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Logout");
-        jMenu2.setMargin(new java.awt.Insets(0, 50, 0, 0));
+        jMenu2.setIconTextGap(0);
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu2MouseClicked(evt);
@@ -1596,7 +1596,12 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
         // TODO add your handling code here:
         LMS.loggedIn = false;
+        Login.username = "";
+        Login.password = "";
         LMS.loginMode = 0;
+        Login.isClerk = false;
+        Login.isStudent = true;
+        Login.isLibrarian = false;
         this.setVisible(false);
         new Login().setVisible(true);
     }//GEN-LAST:event_jMenu2MouseClicked
