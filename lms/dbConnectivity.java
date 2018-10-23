@@ -84,7 +84,9 @@ public class dbConnectivity {
                 String isbn = rs.getString(1).trim();
                 String date = rs.getString(3).trim();
                 String status = rs.getString(4).trim();
-                LMS.getBook(isbn).reserveBook(LMS.getUser(username));
+                if(status.equals("pending")){
+                    LMS.getBook(isbn).reserveBook(LMS.getUser(username));
+                }
                 SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
                 LMS.getUser(username).reserveBook(LMS.getBook(isbn), format.parse(date), status);
             }
@@ -246,7 +248,21 @@ public class dbConnectivity {
             System.out.println(e);
         }
     }
+    public void removeBookFromReservation(String isbn, String username){
+        try {
+            PreparedStatement updatedRS = con.prepareStatement("Delete from ReservationDate "
+                    + " WHERE isbn = ? and username = ?");
+
+            updatedRS.setString(1, isbn);
+            updatedRS.setString(2, username);
+            updatedRS.executeQuery();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
+
+
 
 
 

@@ -484,7 +484,7 @@ public class studentPortal extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel35)
@@ -979,6 +979,7 @@ public class studentPortal extends javax.swing.JFrame {
             jTable5.getColumnModel().getColumn(2).setResizable(false);
             jTable5.getColumnModel().getColumn(3).setResizable(false);
             jTable5.getColumnModel().getColumn(4).setResizable(false);
+            jTable5.getColumnModel().getColumn(4).setHeaderValue("");
         }
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -1436,8 +1437,11 @@ public class studentPortal extends javax.swing.JFrame {
         int k = jTable5.getSelectedRow();
         Book bk = LMS.getBookByName(jTable5.getValueAt(k, 0).toString());
         Date d = new Date();
+        db.removeBookFromReservation(bk.getISBN(), s.getUsername());
+        s.removeBookFromReservation(bk);
         db.updateReturnDate(bk.getISBN(), s.getUsername(), jTable5.getValueAt(k, 2).toString(), d.toString());
         db.retrieveBookRecords();
+        db.loadPendingReservations();
         populateReservationData();
         jDialog3.setVisible(false);
     }//GEN-LAST:event_jButton7MouseClicked

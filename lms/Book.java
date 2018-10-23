@@ -61,9 +61,11 @@ public class Book {
         if(this.Status.equals("unavailable")){
             return false;
         }
+        
         if(this.reserve.contains(u)){
             return false;
         }
+        
         this.reserve.add(u);
 
         return true;

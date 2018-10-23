@@ -76,4 +76,8 @@ public class Clerk extends User {
         return this.reservedBooks;
     }
 
+    
+    public boolean removeBookFromReservation(Book b){
+        return this.reservedBooks.remove(b);
+    }
 }

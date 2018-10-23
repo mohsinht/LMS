@@ -21,7 +21,8 @@ public class clerkPortal extends javax.swing.JFrame {
      * Creates new form clerkPortal
      */
     dbConnectivity db = new dbConnectivity();
-    Clerk c = (Clerk)LMS.loggedInUser;
+    Clerk c = (Clerk) LMS.loggedInUser;
+
     public clerkPortal() {
         initComponents();
         jLabel1.setText("Welcome, " + c.getName() + "!");
@@ -30,51 +31,74 @@ public class clerkPortal extends javax.swing.JFrame {
         jTextField5.setText(c.getUsername());
         jPasswordField1.setText(c.getPassword());
         jComboBox1.setSelectedItem(c.getGender());
-        
+
         jButton3.setVisible(false);
         jButton4.setVisible(false);
         db.loadPendingReservations();
         db.retrieveBookRecords();
         pendingReservationsLoadData();
         populateReservationData();
+        populateRecords();
+        populateBorrowers();
     }
-    public void pendingReservationsLoadData(){
+
+    public void pendingReservationsLoadData() {
         ArrayList<reservationDate> bookRes = c.reservedBooks();
         DefaultTableModel model = (DefaultTableModel) jTable5.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        if(bookRes.isEmpty()){
+        if (bookRes.isEmpty()) {
             jButton3.setVisible(false);
             jButton4.setVisible(false);
         }
         Object rowData[] = new Object[3];
-        for(int i = 0; i < bookRes.size(); i++)
-        {
+        for (int i = 0; i < bookRes.size(); i++) {
             rowData[0] = bookRes.get(i).getBook().getName();
             rowData[2] = bookRes.get(i).getDate();
             rowData[1] = bookRes.get(i).getStatus();
             model.addRow(rowData);
         }
     }
-    public void populateReservationData(){
+
+    public void populateRecords() {
+        DefaultTableModel model = (DefaultTableModel) jTable7.getModel();
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        Object rowData[] = new Object[5];
+        for (int i = 0; i < LMS.records.size(); i++) {
+            if (LMS.records.get(i).getIssuedTo().getUsername().equals(c.getUsername())) {
+                if (LMS.records.get(i).getReturnDate() == null) {
+                    rowData[0] = LMS.records.get(i).getBook().getName();
+                    rowData[1] = LMS.records.get(i).getIssuer().getUsername();
+                    rowData[2] = LMS.records.get(i).issueDate.toString();
+                    rowData[3] = LMS.records.get(i).getDueDate().toString();
+                    rowData[4] = LMS.records.get(i).getFine();
+                    model.addRow(rowData);
+                }
+            }
+        }
+    }
+
+    public void populateReservationData() {
         User u;
         DefaultTableModel model = (DefaultTableModel) jTable4.getModel();
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
         Object rowData[] = new Object[4];
-        for(int i = 0; i<LMS.Books.size(); i++){
+        for (int i = 0; i < LMS.Books.size(); i++) {
             boolean flag = false;
             u = LMS.Books.get(i).topInQ();
-            if(u == null){
+            if (u == null) {
                 continue;
             }
             rowData[0] = LMS.Books.get(i).getName();
             rowData[1] = u.getUsername();
             ArrayList<reservationDate> rd = u.getResInfo();
-            for(int j=0;j<rd.size(); j++){
-                if(rd.get(j).getBook().getISBN().equals(LMS.Books.get(i).getISBN())){
+            for (int j = 0; j < rd.size(); j++) {
+                if (rd.get(j).getBook().getISBN().equals(LMS.Books.get(i).getISBN())) {
                     System.out.println(rd.get(j).getStatus());
                     rowData[2] = rd.get(j).getStatus();
                     rowData[3] = rd.get(j).getDate().toString();
@@ -82,22 +106,43 @@ public class clerkPortal extends javax.swing.JFrame {
                     break;
                 }
             }
-            if(rowData[2].equals("pending")){
+            if (rowData[2].equals("pending")) {
                 model.addRow(rowData);
             }
         }
     }
-    
-    public void successMessage(String msg){
-       jLabel38.setText(msg);
-       jDialog4.setVisible(true);
+
+    public void populateBorrowers() {
+        ArrayList<User> users = LMS.Users;
+        DefaultTableModel model = (DefaultTableModel) jTable6.getModel();
+        for (int i = model.getRowCount() - 1; i >= 0; i--) {
+            model.removeRow(i);
+        }
+        Object rowData[] = new Object[4];
+        for (int i = 0; i < users.size(); i++) {
+            String cls = users.get(i).getClass().getName();
+            if (cls.equals("lms.Borrower")) {
+                rowData[0] = users.get(i).getUsername();
+                rowData[1] = users.get(i).getName();
+                rowData[2] = users.get(i).getGender();
+                rowData[3] = users.get(i).getAge();
+                model.addRow(rowData);
+            }
+
+        }
+
     }
-    
-        
-    public void errorMessage(String msg){
-       jLabel39.setText(msg);
-       jDialog5.setVisible(true);
+
+    public void successMessage(String msg) {
+        jLabel38.setText(msg);
+        jDialog4.setVisible(true);
     }
+
+    public void errorMessage(String msg) {
+        jLabel39.setText(msg);
+        jDialog5.setVisible(true);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,6 +200,34 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
+        jDialog6 = new javax.swing.JDialog();
+        jPanel22 = new javax.swing.JPanel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
+        jLabel52 = new javax.swing.JLabel();
+        jLabel53 = new javax.swing.JLabel();
+        jTextField22 = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jTextField23 = new javax.swing.JTextField();
+        jSlider2 = new javax.swing.JSlider();
+        jLabel56 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
+        jLabel58 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jTextField24 = new javax.swing.JTextField();
+        jLabel57 = new javax.swing.JLabel();
+        jTextField25 = new javax.swing.JTextField();
+        jLabel59 = new javax.swing.JLabel();
+        jDialog7 = new javax.swing.JDialog();
+        jPanel25 = new javax.swing.JPanel();
+        jButton12 = new javax.swing.JButton();
+        jLabel61 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jLabel62 = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -187,6 +260,10 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel49 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
@@ -209,6 +286,10 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel60 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -219,6 +300,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
+        jPanel23 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -765,6 +847,321 @@ public class clerkPortal extends javax.swing.JFrame {
             .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
 
+        jDialog6.setMinimumSize(new java.awt.Dimension(616, 370));
+        jDialog6.setPreferredSize(new java.awt.Dimension(616, 370));
+
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel50.setFont(new java.awt.Font("Raleway ExtraBold", 0, 18)); // NOI18N
+        jLabel50.setText("Update Borrower");
+
+        jLabel51.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel51.setText("Username");
+
+        jTextField19.setEditable(false);
+        jTextField19.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField19.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField19.setText("name");
+
+        jTextField20.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField20.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField20.setText("name");
+
+        jLabel52.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel52.setText("Name");
+
+        jLabel53.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel53.setText("Gender");
+
+        jTextField22.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField22.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField22.setText("name");
+
+        jLabel54.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel54.setText("Roll No.");
+
+        jLabel55.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel55.setText("Campus");
+
+        jTextField23.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField23.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField23.setText("name");
+        jTextField23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField23ActionPerformed(evt);
+            }
+        });
+
+        jSlider2.setMajorTickSpacing(1);
+        jSlider2.setMaximum(50);
+        jSlider2.setMinimum(18);
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider2StateChanged(evt);
+            }
+        });
+
+        jLabel56.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel56.setText("Age");
+
+        jButton11.setBackground(new java.awt.Color(51, 102, 255));
+        jButton11.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jButton11.setForeground(new java.awt.Color(255, 255, 255));
+        jButton11.setText("Update Now");
+        jButton11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton11MouseClicked(evt);
+            }
+        });
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
+        jLabel58.setFont(new java.awt.Font("Raleway ExtraBold", 0, 10)); // NOI18N
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel58.setText("18 Years");
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+
+        jTextField24.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField24.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField24.setText("name");
+        jTextField24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField24ActionPerformed(evt);
+            }
+        });
+
+        jLabel57.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel57.setText("Password");
+
+        jTextField25.setBackground(new java.awt.Color(204, 255, 255));
+        jTextField25.setFont(new java.awt.Font("Raleway SemiBold", 0, 11)); // NOI18N
+        jTextField25.setText("name");
+        jTextField25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField25ActionPerformed(evt);
+            }
+        });
+
+        jLabel59.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel59.setText("Dept");
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel55)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel53)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel51)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel57)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel58))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel22Layout.createSequentialGroup()
+                                    .addComponent(jLabel52)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel22Layout.createSequentialGroup()
+                                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel56)
+                                        .addComponent(jLabel54))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel22Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel59)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 5, Short.MAX_VALUE)))
+                .addGap(26, 26, 26))
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(jLabel50)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel52)))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel54)))
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel50)
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel51))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel53)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel55)
+                        .addComponent(jLabel56))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel58)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel57))
+                    .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel59)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        javax.swing.GroupLayout jDialog6Layout = new javax.swing.GroupLayout(jDialog6.getContentPane());
+        jDialog6.getContentPane().setLayout(jDialog6Layout);
+        jDialog6Layout.setHorizontalGroup(
+            jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog6Layout.setVerticalGroup(
+            jDialog6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jDialog7.setMinimumSize(new java.awt.Dimension(400, 220));
+        jDialog7.setPreferredSize(new java.awt.Dimension(400, 220));
+
+        jPanel25.setBackground(new java.awt.Color(255, 255, 255));
+
+        jButton12.setBackground(new java.awt.Color(0, 255, 153));
+        jButton12.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jButton12.setForeground(new java.awt.Color(255, 255, 255));
+        jButton12.setText("Yes");
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
+
+        jLabel61.setFont(new java.awt.Font("Raleway SemiBold", 0, 18)); // NOI18N
+        jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel61.setText("Do you want to return this book?");
+
+        jButton13.setBackground(new java.awt.Color(255, 0, 51));
+        jButton13.setFont(new java.awt.Font("Raleway ExtraBold", 0, 14)); // NOI18N
+        jButton13.setForeground(new java.awt.Color(255, 255, 255));
+        jButton13.setText("No");
+        jButton13.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton13MouseClicked(evt);
+            }
+        });
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jLabel62.setFont(new java.awt.Font("Raleway SemiBold", 0, 14)); // NOI18N
+        jLabel62.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel62.setText("Book Name: unavailable");
+
+        jLabel63.setFont(new java.awt.Font("Raleway SemiBold", 0, 14)); // NOI18N
+        jLabel63.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel63.setText("ISBN: unavailable");
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(90, 90, 90)
+                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                .addContainerGap(69, Short.MAX_VALUE)
+                .addComponent(jLabel62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel63)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel61)
+                .addGap(13, 13, 13)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
+        );
+
+        javax.swing.GroupLayout jDialog7Layout = new javax.swing.GroupLayout(jDialog7.getContentPane());
+        jDialog7.getContentPane().setLayout(jDialog7Layout);
+        jDialog7Layout.setHorizontalGroup(
+            jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog7Layout.setVerticalGroup(
+            jDialog7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -892,7 +1289,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap(96, Short.MAX_VALUE)
+                        .addContainerGap(114, Short.MAX_VALUE)
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -972,7 +1369,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 674, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1019,7 +1416,7 @@ public class clerkPortal extends javax.swing.JFrame {
                 .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1148,7 +1545,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addGap(0, 674, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1161,18 +1558,92 @@ public class clerkPortal extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Search Book", jPanel4);
 
+        jPanel21.setBackground(new java.awt.Color(46, 124, 172));
+
+        jLabel49.setFont(new java.awt.Font("Raleway ExtraBold", 0, 18)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("All Students");
+
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Username", "Name", "Gender", "Age"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable6.getTableHeader().setReorderingAllowed(false);
+        jTable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable6MouseClicked(evt);
+            }
+        });
+        jTable6.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTable6PropertyChange(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTable6);
+        if (jTable6.getColumnModel().getColumnCount() > 0) {
+            jTable6.getColumnModel().getColumn(0).setResizable(false);
+            jTable6.getColumnModel().getColumn(1).setResizable(false);
+            jTable6.getColumnModel().getColumn(2).setResizable(false);
+            jTable6.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel49)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel49)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Search Student", jPanel5);
+        jTabbedPane3.addTab("Students Info", jPanel5);
 
         jPanel19.setBackground(new java.awt.Color(62, 175, 237));
 
@@ -1187,7 +1658,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(248, 248, 248)
                 .addComponent(jLabel40)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addContainerGap(314, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1366,18 +1837,81 @@ public class clerkPortal extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Add Student", jPanel7);
 
+        jPanel24.setBackground(new java.awt.Color(46, 124, 172));
+
+        jLabel60.setFont(new java.awt.Font("Raleway ExtraBold", 0, 18)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel60.setText("Current Reservations");
+
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Book Title", "Issued By", "Reserved On", "Due Date", "Fine"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable7.getTableHeader().setReorderingAllowed(false);
+        jTable7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable7MouseClicked(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTable7);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel60)
+                .addGap(235, 235, 235))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel60)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 656, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Book Records", jPanel9);
+        jTabbedPane3.addTab("Your Current", jPanel9);
 
         jPanel12.setBackground(new java.awt.Color(46, 124, 172));
 
@@ -1437,7 +1971,7 @@ public class clerkPortal extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jLabel19)
-                .addContainerGap(411, Short.MAX_VALUE))
+                .addContainerGap(429, Short.MAX_VALUE))
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4)
@@ -1513,7 +2047,7 @@ public class clerkPortal extends javax.swing.JFrame {
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1536,7 +2070,20 @@ public class clerkPortal extends javax.swing.JFrame {
             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jTabbedPane3.addTab("Status", jPanel14);
+        jTabbedPane3.addTab("Your Status", jPanel14);
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 674, Short.MAX_VALUE)
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 516, Short.MAX_VALUE)
+        );
+
+        jTabbedPane3.addTab("Your History", jPanel23);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -1623,11 +2170,11 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         String g = "Male";
-        if(jComboBox1.getSelectedIndex() == 1){
+        if (jComboBox1.getSelectedIndex() == 1) {
             g = "Female";
         }
-        db.updateClerk(jTextField5.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
-        c.update(jTextField5.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
+        db.updateClerk(jTextField5.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int) Integer.parseInt(jTextField2.getText()));
+        c.update(jTextField5.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int) Integer.parseInt(jTextField2.getText()));
         //String rollNo, String dept, String campus, String username, String password, String Name, String Gender, int Age
         //s.update(jTextField3.getText(), jTextField5.getText(), jTextField6.getText(), jTextField4.getText(), String.valueOf(jPasswordField1.getPassword()), jTextField1.getText(), g, (int)Integer.parseInt(jTextField2.getText()));
     }//GEN-LAST:event_jButton1MouseClicked
@@ -1642,7 +2189,7 @@ public class clerkPortal extends javax.swing.JFrame {
 
     private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
         // TODO add your handling code here:
-        if(jTextField7.getText().equals("Search by Name, ISBN or Author")){
+        if (jTextField7.getText().equals("Search by Name, ISBN or Author")) {
             jTextField7.setText("");
             jTextField7.setForeground(new java.awt.Color(0, 0, 0));
         }
@@ -1650,7 +2197,7 @@ public class clerkPortal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7FocusGained
 
     private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
-        if(jTextField7.getText().equals("")){
+        if (jTextField7.getText().equals("")) {
             jTextField7.setText("Search by Name, ISBN or Author");
             jTextField7.setForeground(new java.awt.Color(204, 204, 204));
         }
@@ -1664,13 +2211,12 @@ public class clerkPortal extends javax.swing.JFrame {
         for (int i = model.getRowCount() - 1; i >= 0; i--) {
             model.removeRow(i);
         }
-        if(bookRes.isEmpty()){
+        if (bookRes.isEmpty()) {
             jButton3.setVisible(false);
             jButton4.setVisible(false);
         }
         Object rowData[] = new Object[4];
-        for(int i = 0; i < bookRes.size(); i++)
-        {
+        for (int i = 0; i < bookRes.size(); i++) {
             rowData[0] = bookRes.get(i).getISBN();
             rowData[1] = bookRes.get(i).getName();
             rowData[2] = bookRes.get(i).getAuthor();
@@ -1681,10 +2227,10 @@ public class clerkPortal extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow()>=0){
+        if (jTable1.getSelectedRow() >= 0) {
             jButton3.setVisible(true);
             jButton4.setVisible(true);
-        }else{
+        } else {
             jButton3.setVisible(false);
             jButton4.setVisible(false);
         }
@@ -1692,9 +2238,9 @@ public class clerkPortal extends javax.swing.JFrame {
 
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow()>=0){
+        if (jTable1.getSelectedRow() >= 0) {
             jButton3.setVisible(true);
-        }else{
+        } else {
             jButton3.setVisible(false);
         }
 
@@ -1702,9 +2248,9 @@ public class clerkPortal extends javax.swing.JFrame {
 
     private void jTable1VetoableChange(java.beans.PropertyChangeEvent evt)throws java.beans.PropertyVetoException {//GEN-FIRST:event_jTable1VetoableChange
         // TODO add your handling code here:
-        if(jTable1.getSelectedRow()>=0){
+        if (jTable1.getSelectedRow() >= 0) {
             jButton3.setVisible(true);
-        }else{
+        } else {
             jButton3.setVisible(false);
         }
     }//GEN-LAST:event_jTable1VetoableChange
@@ -1712,13 +2258,13 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
-        if(c.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
+        if (c.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))) {
             db.reservationDate(c.getUsername(), jTable1.getValueAt(k, 0).toString(), "pending", new Date());
             jDialog2.setVisible(true);
             jLabel15.setText("Your book has been added to the queue. Please wait");
             jLabel16.setText("while the upper staff approves your request.");
             pendingReservationsLoadData();
-        }else{
+        } else {
             jDialog2.setVisible(true);
             jLabel15.setText("Your request has been rejected. Either the book is");
             jLabel16.setText("unavailable or you have already placed a request.");
@@ -1737,6 +2283,7 @@ public class clerkPortal extends javax.swing.JFrame {
         jLabel32.setText(String.valueOf(selB.getReservationSize()));
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setVisible(true);
+        populateRecords();
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1746,14 +2293,14 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
         int k = jTable1.getSelectedRow();
-        if(c.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))){
+        if (c.reserveBook(LMS.getBook(jTable1.getValueAt(k, 1).toString(), jTable1.getValueAt(k, 0).toString()))) {
             db.reservationDate(c.getUsername(), jTable1.getValueAt(k, 0).toString(), "pending", new Date());
             jDialog1.setVisible(false);
             jDialog2.setVisible(true);
             jLabel15.setText("Your book has been added to the queue. Please wait");
             jLabel16.setText("while the upper staff approves your request.");
             pendingReservationsLoadData();
-        }else{
+        } else {
             jDialog1.setVisible(false);
             jDialog2.setVisible(true);
             jLabel15.setText("Your request has been rejected. Either the book is");
@@ -1774,12 +2321,12 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable4MouseClicked
         // TODO add your handling code here:
         issueBookDialog();
-        
+
     }//GEN-LAST:event_jTable4MouseClicked
 
-    void issueBookDialog(){
+    void issueBookDialog() {
         int k = jTable4.getSelectedRow();
-        if(k<0){
+        if (k < 0) {
             return;
         }
         jDialog3.setVisible(true);
@@ -1787,28 +2334,28 @@ public class clerkPortal extends javax.swing.JFrame {
         User issuedTo = LMS.getUser(jTable4.getValueAt(k, 1).toString());
         Book bk = LMS.getBookByName(jTable4.getValueAt(k, 0).toString());
         Date issueDate = new Date();
-        
-        SimpleDateFormat format=new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");  
+
+        SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
         Calendar cl = Calendar.getInstance();
         cl.setTime(new Date());
         cl.add(Calendar.DATE, 15);
         String dateString = format.format(cl.getTime());
         Date dueDate;
-        try{
+        try {
             dueDate = format.parse(dateString);;
             jTextField11.setText(dueDate.toString());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
-    
+
         jTextField3.setText(issuer.getUsername());
         jTextField4.setText(issuedTo.getUsername());
         jTextField8.setText(bk.getName());
         jTextField9.setText(bk.getISBN());
         jTextField10.setText(issueDate.toString());
-        
+
     }
-    
+
     private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField10ActionPerformed
@@ -1825,16 +2372,16 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
         // TODO add your handling code here:
         jLabel37.setText(jSlider1.getValue() + " days");
-        SimpleDateFormat format=new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");  
+        SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
         Calendar cl = Calendar.getInstance();
         cl.setTime(new Date());
         cl.add(Calendar.DATE, jSlider1.getValue());
         String dateString = format.format(cl.getTime());
         Date dueDate;
-        try{
+        try {
             dueDate = format.parse(dateString);;
             jTextField11.setText(dueDate.toString());
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
     }//GEN-LAST:event_jSlider1StateChanged
@@ -1845,23 +2392,24 @@ public class clerkPortal extends javax.swing.JFrame {
         User issuedTo = LMS.getUser(jTextField4.getText());
         Book book = LMS.getBook(jTextField9.getText());
         Date issueDate = new Date();
-        SimpleDateFormat format=new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy");
         Date dueDate;
-        try{
+        try {
             dueDate = format.parse(jTextField11.getText());
             LMS.records.add(new BookRecord(issuer, issuedTo, book, issueDate, dueDate));
-            db.changeResStatus("Issued", book.getISBN(),issuedTo.getUsername());
+            db.changeResStatus("Issued", book.getISBN(), issuedTo.getUsername());
             db.insertBookRecord(book.getISBN(), issuedTo.getUsername(), issuer.getUsername(), issueDate.toString(), dueDate.toString(), "-");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         jDialog3.setVisible(false);
         book.reserve.poll();
         issuedTo.changeResStatus(book, "Issued");
-      
+
         successMessage("The book has been issued!");
         pendingReservationsLoadData();
         populateReservationData();
+        populateRecords();
     }//GEN-LAST:event_jButton7MouseClicked
 
     private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
@@ -1885,18 +2433,18 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
         // TODO add your handling code here:
         String g = "Male";
-        if(jComboBox2.getSelectedIndex() == 1){
+        if (jComboBox2.getSelectedIndex() == 1) {
             g = "Female";
         }
-        if(jTextField14.getText().equals("") || jTextField13.getText().equals("") || jTextField12.getText().equals("") || jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("")){
+        if (jTextField14.getText().equals("") || jTextField13.getText().equals("") || jTextField12.getText().equals("") || jTextField15.getText().equals("") || jTextField16.getText().equals("") || jTextField17.getText().equals("") || jTextField18.getText().equals("")) {
             errorMessage("Few details are missing!");
             return;
         }
-        if(LMS.getUser(jTextField14.getText())!= null){
+        if (LMS.getUser(jTextField14.getText()) != null) {
             errorMessage("Username already exists!");
             return;
         }
-        db.addStudent(jTextField14.getText(), jTextField15.getText(), jTextField12.getText(), g, (int)Integer.valueOf(jTextField13.getText()), jTextField16.getText(), jTextField17.getText(), jTextField18.getText());
+        db.addStudent(jTextField14.getText(), jTextField15.getText(), jTextField12.getText(), g, (int) Integer.valueOf(jTextField13.getText()), jTextField16.getText(), jTextField17.getText(), jTextField18.getText());
         db.loadUsers();
         successMessage("Student has been added!");
     }//GEN-LAST:event_jButton10MouseClicked
@@ -1908,6 +2456,114 @@ public class clerkPortal extends javax.swing.JFrame {
     private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
+
+    private void jTable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable6MouseClicked
+        // TODO add your handling code here:
+
+        jDialog6.setVisible(true);
+
+        int k = jTable6.getSelectedRow();
+        if (k < 0) {
+            return;
+        }
+        Borrower stu = (Borrower) LMS.getUser(jTable6.getValueAt(k, 0).toString());
+        jTextField19.setText(stu.getUsername());
+        jTextField20.setText(stu.getName());
+        if (stu.getGender().equals("Female")) {
+            jComboBox3.setSelectedIndex(1);
+        }
+        jTextField22.setText(stu.getRollNo());
+        jTextField23.setText(stu.getCampus());
+        jSlider2.setValue(stu.getAge());
+        jLabel58.setText(stu.getAge() + " Years");
+
+        jTextField24.setText(stu.getPassword());
+        jTextField25.setText(stu.getDept());
+    }//GEN-LAST:event_jTable6MouseClicked
+
+    private void jTable6PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable6PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable6PropertyChange
+
+    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField23ActionPerformed
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+        // TODO add your handling code here:
+        jLabel58.setText(jSlider2.getValue() + " Years");
+    }//GEN-LAST:event_jSlider2StateChanged
+
+    private void jButton11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton11MouseClicked
+        // TODO add your handling code here:
+        String g = "Male";
+        if (jComboBox2.getSelectedIndex() == 1) {
+            g = "Female";
+        }
+
+        db.updateBorrower(jTextField22.getText(), jTextField25.getText(), jTextField23.getText(), jTextField19.getText(), jTextField24.getText(), jTextField20.getText(), g, jSlider2.getValue());
+        db.loadUsers();
+        populateBorrowers();
+        jDialog6.setVisible(false);
+        successMessage("User has been updated!");
+    }//GEN-LAST:event_jButton11MouseClicked
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField24ActionPerformed
+
+    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField25ActionPerformed
+
+    private void jTable7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable7MouseClicked
+        // TODO add your handling code here:
+        returnBookDialog();
+    }//GEN-LAST:event_jTable7MouseClicked
+
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        // TODO add your handling code here:
+        int k = jTable7.getSelectedRow();
+        if(k<0){
+            return;
+        }
+        System.out.println(jTable7.getValueAt(k, 0).toString());
+        Book bk = LMS.getBookByName(jTable7.getValueAt(k, 0).toString());
+        Date d = new Date();
+        db.removeBookFromReservation(bk.getISBN(), c.getUsername());
+        c.removeBookFromReservation(bk);
+        db.updateReturnDate(bk.getISBN(), c.getUsername(), jTable7.getValueAt(k, 2).toString(), d.toString());
+        db.retrieveBookRecords();
+        db.loadPendingReservations();
+        populateReservationData();
+        pendingReservationsLoadData();
+        jDialog7.setVisible(false);
+    }//GEN-LAST:event_jButton12MouseClicked
+
+    private void jButton13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton13MouseClicked
+        // TODO add your handling code here:
+        jDialog7.setVisible(false);
+    }//GEN-LAST:event_jButton13MouseClicked
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    public void returnBookDialog() {
+        int k = jTable7.getSelectedRow();
+        if (k < 0) {
+            return;
+        }
+        Book bk = LMS.getBookByName(jTable7.getValueAt(k, 0).toString());
+        jLabel62.setText("Book: " + bk.getName());
+        jLabel63.setText("ISBN: " + bk.getISBN());
+        jDialog7.setVisible(true);
+        populateRecords();
+    }
 
     /**
      * @param args the command line arguments
@@ -1947,6 +2603,9 @@ public class clerkPortal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1957,11 +2616,14 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JDialog jDialog3;
     private javax.swing.JDialog jDialog4;
     private javax.swing.JDialog jDialog5;
+    private javax.swing.JDialog jDialog6;
+    private javax.swing.JDialog jDialog7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2005,8 +2667,23 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2026,6 +2703,11 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2037,11 +2719,16 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
@@ -2052,7 +2739,13 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField16;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;

@@ -94,4 +94,8 @@ public class Borrower extends User {
     public ArrayList<reservationDate> reservedBooks() {
         return this.reservedBooks;
     }
+    
+    public boolean removeBookFromReservation(Book b){
+        return this.reservedBooks.remove(b);
+    }
 }
