@@ -22,6 +22,7 @@ public class clerkPortal extends javax.swing.JFrame {
      */
     dbConnectivity db = new dbConnectivity();
     Clerk c = (Clerk) LMS.loggedInUser;
+    int selectedInCurrentTable = -1;
 
     public clerkPortal() {
         initComponents();
@@ -76,6 +77,26 @@ public class clerkPortal extends javax.swing.JFrame {
                     rowData[3] = LMS.records.get(i).getDueDate().toString();
                     rowData[4] = LMS.records.get(i).getFine();
                     model.addRow(rowData);
+                }
+            }
+        }
+
+        DefaultTableModel model2 = (DefaultTableModel) jTable3.getModel();
+        for (int i = model2.getRowCount() - 1; i >= 0; i--) {
+            model2.removeRow(i);
+        }
+        Object rowData2[] = new Object[6];
+        for (int i = 0; i < LMS.records.size(); i++) {
+            if (LMS.records.get(i).getIssuedTo().getUsername().equals(c.getUsername())) {
+                if (LMS.records.get(i).getReturnDate() != null) {
+
+                    rowData2[0] = LMS.records.get(i).getBook().getName();
+                    rowData2[1] = LMS.records.get(i).getIssuer().getUsername();
+                    rowData2[2] = LMS.records.get(i).issueDate.toString();
+                    rowData2[3] = LMS.records.get(i).getDueDate().toString();
+                    rowData2[4] = LMS.records.get(i).getReturnDate();
+                    rowData2[5] = LMS.records.get(i).getFine();
+                    model2.addRow(rowData2);
                 }
             }
         }
@@ -301,6 +322,10 @@ public class clerkPortal extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel64 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -2072,15 +2097,73 @@ public class clerkPortal extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Your Status", jPanel14);
 
+        jPanel26.setBackground(new java.awt.Color(46, 124, 172));
+
+        jLabel64.setFont(new java.awt.Font("Raleway ExtraBold", 0, 18)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel64.setText("History of Reservations");
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Book Title", "Status", "Reserved On", "Due Date", "Return Date", "Fine"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable3.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(jTable3);
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel64)
+                .addGap(223, 223, 223))
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel64)
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(102, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 516, Short.MAX_VALUE)
+            .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jTabbedPane3.addTab("Your History", jPanel23);
@@ -2264,6 +2347,8 @@ public class clerkPortal extends javax.swing.JFrame {
             jLabel15.setText("Your book has been added to the queue. Please wait");
             jLabel16.setText("while the upper staff approves your request.");
             pendingReservationsLoadData();
+            populateRecords();
+            populateReservationData();
         } else {
             jDialog2.setVisible(true);
             jLabel15.setText("Your request has been rejected. Either the book is");
@@ -2527,8 +2612,8 @@ public class clerkPortal extends javax.swing.JFrame {
 
     private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
         // TODO add your handling code here:
-        int k = jTable7.getSelectedRow();
-        if(k<0){
+        int k = selectedInCurrentTable;
+        if (k < 0) {
             return;
         }
         System.out.println(jTable7.getValueAt(k, 0).toString());
@@ -2541,6 +2626,7 @@ public class clerkPortal extends javax.swing.JFrame {
         db.loadPendingReservations();
         populateReservationData();
         pendingReservationsLoadData();
+        populateRecords();
         jDialog7.setVisible(false);
     }//GEN-LAST:event_jButton12MouseClicked
 
@@ -2558,6 +2644,7 @@ public class clerkPortal extends javax.swing.JFrame {
         if (k < 0) {
             return;
         }
+        selectedInCurrentTable = k;
         Book bk = LMS.getBookByName(jTable7.getValueAt(k, 0).toString());
         jLabel62.setText("Book: " + bk.getName());
         jLabel63.setText("ISBN: " + bk.getISBN());
@@ -2684,6 +2771,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2708,6 +2796,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2717,6 +2806,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -2725,6 +2815,7 @@ public class clerkPortal extends javax.swing.JFrame {
     private javax.swing.JSlider jSlider2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
